@@ -6,6 +6,20 @@
     <title>Unity WebGL Player | Fruit Ninja</title>
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <style>
+        @media (orientation: portrait) {
+            .portrait-message {
+                display: block;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                text-align: center;
+                font-size: 24px;
+                color: black;
+            }
+        }
+    </style>
 </head>
 <body>
     <div id="unity-container" class="unity-desktop">
@@ -23,7 +37,7 @@
             <div id="unity-build-title">Fruit Ninja</div>
         </div>
     </div>
-    <div id="tilt-message" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 24px; color: black;">
+    <div id="tilt-message" class="portrait-message">
         Tilt to Landscape
     </div>
     <script>var container = document.querySelector("#unity-container");
@@ -34,6 +48,7 @@
         var warningBanner = document.querySelector("#unity-warning");
         var tiltMessage = document.querySelector("#tilt-message");
 
+        // Function to show messages
         function unityShowBanner(msg, type) {
             function updateBannerVisibility() {
                 warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
