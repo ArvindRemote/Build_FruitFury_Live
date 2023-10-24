@@ -23,12 +23,16 @@
             <div id="unity-build-title">Fruit Ninja</div>
         </div>
     </div>
+    <div id="tilt-message" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; font-size: 24px; color: black;">
+        Tilt to Landscape
+    </div>
     <script>var container = document.querySelector("#unity-container");
         var canvas = document.querySelector("#unity-canvas");
         var loadingBar = document.querySelector("#unity-loading-bar");
         var progressBarFull = document.querySelector("#unity-progress-bar-full");
         var fullscreenButton = document.querySelector("#unity-fullscreen-button");
         var warningBanner = document.querySelector("#unity-warning");
+        var tiltMessage = document.querySelector("#tilt-message");
 
         function unityShowBanner(msg, type) {
             function updateBannerVisibility() {
@@ -81,7 +85,7 @@
             createUnityInstance(canvas, config, (progress) => {
                 progressBarFull.style.width = 100 * progress + "%";
             }).then((unityInstance) => {
-                loadingBar.style.display = "none";
+                loadingBar.style display = "none";
                 fullscreenButton.onclick = () => {
                     unityInstance.SetFullscreen(1);
                 };
@@ -95,13 +99,13 @@
         // Add orientation change listener
         window.addEventListener('orientationchange', function () {
             if (window.orientation === 0 || window.orientation === 180) {
-                // Portrait mode: Display "Tilt to Landscape"
-                warningBanner.style.display = 'block';
+                // Portrait mode: Display "Tilt to Landscape" message
+                tiltMessage.style.display = 'block';
                 fullscreenButton.style.display = 'none';
                 canvas.style.display = 'none';
             } else {
-                // Landscape mode: Enable full screen
-                warningBanner.style.display = 'none';
+                // Landscape mode: Hide the message and enable full screen
+                tiltMessage.style.display = 'none';
                 fullscreenButton.style.display = 'block';
                 canvas.style.display = 'block';
                 unityInstance.SetFullscreen(1);
